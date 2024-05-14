@@ -6,13 +6,16 @@ import { StatusBar } from "expo-status-bar";
 import { useNavigation } from "@react-navigation/native";
 
 const SplashScreen = () => {
+  //navigation setup
   const nav = useNavigation();
 
+  //useEffects
   useEffect(() => {
     setTimeout(() => {
       nav.replace("Signup");
     }, 3000);
   }, []);
+
   return (
     <View style={styles.screen}>
       <StatusBar style="light" />

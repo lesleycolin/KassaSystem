@@ -11,21 +11,24 @@ import HomeNavigator from "./HomeNavigator";
 import CashRegisterNavigator from "./CashRegisterNavigator";
 import OverviewNavigator from "./OverviewNavigator";
 import ClientNavigator from "./ClientNavigator";
+import { myColors } from "../utilities/Colors";
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
   return (
+    //Navigator
     <Tab.Navigator
       initialRouteName="Signup"
       screenOptions={{
-        headerStyle: { backgroundColor: "#222831" },
-        headerTintColor: "#CADEFC",
-        tabBarStyle: { backgroundColor: "#222831" },
-        tabBarActiveTintColor: "red",
-        tabBarInactiveTintColor: "#c8c8c8",
+        headerStyle: { backgroundColor: myColors.backGround },
+        headerTintColor: myColors.secondary,
+        tabBarStyle: { backgroundColor: myColors.backGround },
+        tabBarActiveTintColor: myColors.focus,
+        tabBarInactiveTintColor: myColors.third,
       }}
     >
+      {/* Group navigation */}
       <Tab.Group
         screenOptions={{
           headerShown: false,
@@ -33,6 +36,7 @@ const TabNavigator = () => {
           tabBarLabelStyle: { fontFamily: "Angkor" },
         }}
       >
+        {/* bottom tabs to navigate to the main screens */}
         <Tab.Screen
           name="Home"
           component={HomeNavigator}
@@ -52,20 +56,20 @@ const TabNavigator = () => {
           }}
         />
         <Tab.Screen
-          name="Overzicht"
-          component={OverviewNavigator}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <AntDesign name="linechart" size={24} color="#EEEEEE" />
-            ),
-          }}
-        />
-        <Tab.Screen
           name="Klanten"
           component={ClientNavigator}
           options={{
             tabBarIcon: ({ color, size }) => (
               <MaterialIcons name="people" size={24} color="#EEEEEE" />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Overzicht"
+          component={OverviewNavigator}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <AntDesign name="linechart" size={24} color="#EEEEEE" />
             ),
           }}
         />

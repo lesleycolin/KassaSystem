@@ -5,9 +5,19 @@ import { myColors } from "../utilities/Colors";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const Signup = () => {
+  //States
   const [isVisible, setIsVisible] = useState(true);
+  const [userCredentials, setUserCredentials] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = userCredentials;
+
+  const nav = useNavigation();
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -18,7 +28,13 @@ const Signup = () => {
       />
       <Text style={styles.title}>Sign Up</Text>
       <Text style={styles.subtitle}>or</Text>
-      <Text style={styles.login}>Login</Text>
+      <TouchableOpacity
+        onPress={() => {
+          nav.navigate("Login");
+        }}
+      >
+        <Text style={styles.login}>Login</Text>
+      </TouchableOpacity>
       <ScrollView style={styles.loginField}>
         <View>
           <Text style={styles.inputTitle}>Username</Text>
@@ -32,6 +48,10 @@ const Signup = () => {
           <Text style={styles.inputTitle}>Email</Text>
           <View style={styles.inputfield}>
             <TextInput
+              value={email}
+              onChangeText={(value) => {
+                setUserCredentials({ ...userCredentials, email: value });
+              }}
               maxLength={35}
               keyboardType="name-phone-pad"
               style={styles.textinput}
@@ -40,6 +60,10 @@ const Signup = () => {
           <Text style={styles.inputTitle}>Password</Text>
           <View style={styles.inputfield}>
             <TextInput
+              value={password}
+              onChangeText={(value) => {
+                setUserCredentials({ ...userCredentials, password: value });
+              }}
               maxLength={20}
               secureTextEntry={isVisible}
               keyboardType="ascii-capable"

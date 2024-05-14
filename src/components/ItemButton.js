@@ -11,7 +11,7 @@ const ItemButton = (props) => {
   };
   return (
     <TouchableOpacity style={styles.button} onPress={onPressHandler}>
-      <Image source={logo} style={{ width: 100, height: 50 }} />
+      <Image source={logo} style={{ maxWidth: 100, height: 100 }} />
     </TouchableOpacity>
   );
 };
@@ -22,10 +22,9 @@ const styles = StyleSheet.create({
   button: {
     width: 100,
     height: 100,
-    backgroundColor: "blue",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 10,
+    margin: 5,
   },
   buttonText: {
     color: "white",

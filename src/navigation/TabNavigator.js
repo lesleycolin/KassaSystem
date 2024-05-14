@@ -7,6 +7,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 
+import HomeNavigator from "./HomeNavigator";
 import CashRegisterNavigator from "./CashRegisterNavigator";
 import OverviewNavigator from "./OverviewNavigator";
 import ClientNavigator from "./ClientNavigator";
@@ -16,11 +17,12 @@ const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
   return (
     <Tab.Navigator
+      initialRouteName="Signup"
       screenOptions={{
         headerStyle: { backgroundColor: "#222831" },
         headerTintColor: "#CADEFC",
         tabBarStyle: { backgroundColor: "#222831" },
-        tabBarActiveTintColor: "white",
+        tabBarActiveTintColor: "red",
         tabBarInactiveTintColor: "#c8c8c8",
       }}
     >
@@ -31,6 +33,15 @@ const TabNavigator = () => {
           tabBarLabelStyle: { fontFamily: "Angkor" },
         }}
       >
+        <Tab.Screen
+          name="Home"
+          component={HomeNavigator}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <FontAwesome5 name="home" size={24} color="#EEEEEE" />
+            ),
+          }}
+        />
         <Tab.Screen
           name="Kassa"
           component={CashRegisterNavigator}

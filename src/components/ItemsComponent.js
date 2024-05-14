@@ -7,7 +7,7 @@ const ItemsComponent = () => {
     {
       name: "Coca Cola",
       price: 2.5,
-      logo: require("../../assets/logos/Coca-Cola-Logo.png"),
+      logo: require("../../assets/logos/Coca-Cola.png"),
       version: "Regular",
     },
     {
@@ -19,49 +19,43 @@ const ItemsComponent = () => {
     {
       name: "Coca Cola Zero",
       price: 2.5,
-      logo: require("../../assets/logos/Cola-Zero.png"),
+      logo: require("../../assets/logos/Coca-Cola-Zero.png"),
       version: "Zero",
     },
     {
       name: "Fanta",
       price: 2.5,
-      logo: require("../../assets/logos/Coca-Cola-Logo.png"),
+      logo: require("../../assets/logos/Fanta.png"),
       version: "Regular",
     },
     {
-      name: "Sprite",
+      name: "Fanta Zero",
       price: 2.5,
-      logo: require("../../assets/logos/Coca-Cola-Logo.png"),
-      version: "Regular",
+      logo: require("../../assets/logos/Fanta-Zero.png"),
+      version: "Zero",
     },
     {
       name: "Jupiler",
       price: 2.5,
-      logo: require("../../assets/logos/Coca-Cola-Logo.png"),
+      logo: require("../../assets/logos/Jupiler.png"),
+      version: "Beer",
+    },
+    {
+      name: "Heineken 00%",
+      price: 2.5,
+      logo: require("../../assets/logos/Heineken-0.png"),
+      version: "Beer",
+    },
+    {
+      name: "Water Plat",
+      price: 2.5,
+      logo: require("../../assets/logos/Spa-Blauw.png"),
       version: "Regular",
     },
     {
-      name: "Jupiler 00%",
+      name: "Water Bruis",
       price: 2.5,
-      logo: require("../../assets/logos/Coca-Cola-Logo.png"),
-      version: "Regular",
-    },
-    {
-      name: "Water",
-      price: 2.5,
-      logo: require("../../assets/logos/Coca-Cola-Logo.png"),
-      version: "Regular",
-    },
-    {
-      name: "Koffie",
-      price: 2.5,
-      logo: require("../../assets/logos/Coca-Cola-Logo.png"),
-      version: "Regular",
-    },
-    {
-      name: "Thee",
-      price: 2.5,
-      logo: require("../../assets/logos/Coca-Cola-Logo.png"),
+      logo: require("../../assets/logos/Spa-Rood.png"),
       version: "Regular",
     },
   ]);
@@ -69,6 +63,8 @@ const ItemsComponent = () => {
   return (
     <View style={styles.container}>
       <FlatList
+        justifyContent="center"
+        margin="auto"
         numColumns={3}
         keyExtractor={(item) => item.name.toString()}
         style={styles.itemsList}

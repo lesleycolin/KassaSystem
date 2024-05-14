@@ -6,8 +6,7 @@ import OrderOverviewComponent from "../components/OrderOverviewComponent";
 const CashRegisterScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>CashRegisterScreen</Text>
-      {/* <OrderOverviewComponent /> */}
+      <OrderOverviewComponent />
       <ItemsComponent />
     </View>
   );

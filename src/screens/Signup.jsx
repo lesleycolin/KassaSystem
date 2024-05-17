@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { myColors } from "../utilities/Colors";
@@ -103,7 +110,7 @@ const Signup = () => {
       </ScrollView>
       <TouchableOpacity
         onPress={() => {
-          userAccount;
+          userAccount();
         }}
         style={styles.button}
       >

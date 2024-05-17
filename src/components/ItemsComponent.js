@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import React, { useState } from "react";
 import ItemButton from "./ItemButton";
+import { myColors } from "../utilities/Colors";
 
 const ItemsComponent = () => {
   const [items, setItems] = useState([
@@ -86,7 +87,7 @@ export default ItemsComponent;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: myColors.backGround,
   },
   itemsList: {
     display: "flex",

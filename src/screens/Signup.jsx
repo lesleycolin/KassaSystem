@@ -6,6 +6,8 @@ import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { authentication } from "../../FirebaseConfig";
+// import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Signup = () => {
   //States
@@ -16,6 +18,27 @@ const Signup = () => {
   });
 
   const { email, password } = userCredentials;
+
+  // const userAccount = () => {
+  //   createUserWithEmailAndPassword(
+  //     "jane.doe@example.com",
+  //     "SuperSecretPassword!"
+  //   )
+  //     .then(() => {
+  //       console.log("User account created & signed in!");
+  //     })
+  //     .catch((error) => {
+  //       if (error.code === "auth/email-already-in-use") {
+  //         console.log("That email address is already in use!");
+  //       }
+
+  //       if (error.code === "auth/invalid-email") {
+  //         console.log("That email address is invalid!");
+  //       }
+
+  //       console.error(error);
+  //     });
+  // };
 
   const nav = useNavigation();
 

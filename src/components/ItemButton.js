@@ -1,5 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
+import { myColors } from "../utilities/Colors";
 
 const ItemButton = (props) => {
   const { logo, version, onPress } = props;
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   buttonText: {
-    color: "white",
+    color: myColors.primary,
     fontSize: 16,
     fontWeight: "bold",
   },

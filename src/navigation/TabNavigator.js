@@ -42,7 +42,7 @@ const TabNavigator = () => {
           component={HomeNavigator}
           options={{
             tabBarIcon: ({ color, size }) => (
-              <FontAwesome5 name="home" size={24} color="#EEEEEE" />
+              <FontAwesome5 name="home" size={24} color={myColors.primary} />
             ),
           }}
         />
@@ -51,7 +51,11 @@ const TabNavigator = () => {
           component={CashRegisterNavigator}
           options={{
             tabBarIcon: ({ color, size }) => (
-              <FontAwesome5 name="cash-register" size={24} color="#EEEEEE" />
+              <FontAwesome5
+                name="cash-register"
+                size={24}
+                color={myColors.primary}
+              />
             ),
           }}
         />
@@ -60,7 +64,7 @@ const TabNavigator = () => {
           component={ClientNavigator}
           options={{
             tabBarIcon: ({ color, size }) => (
-              <MaterialIcons name="people" size={24} color="#EEEEEE" />
+              <MaterialIcons name="people" size={24} color={myColors.primary} />
             ),
           }}
         />
@@ -69,7 +73,7 @@ const TabNavigator = () => {
           component={OverviewNavigator}
           options={{
             tabBarIcon: ({ color, size }) => (
-              <AntDesign name="linechart" size={24} color="#EEEEEE" />
+              <AntDesign name="linechart" size={24} color={myColors.primary} />
             ),
           }}
         />

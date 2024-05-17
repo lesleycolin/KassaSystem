@@ -7,7 +7,7 @@ import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { authentication } from "../../FirebaseConfig";
-// import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Signup = () => {
   //States
@@ -20,12 +20,9 @@ const Signup = () => {
   const { email, password } = userCredentials;
 
   const userAccount = () => {
-    createUserWithEmailAndPassword(
-      "jane.doe@example.com",
-      "SuperSecretPassword!"
-    )
+    createUserWithEmailAndPassword(authentication, email, password)
       .then(() => {
-        console.log("User account created & signed in!");
+        Alert.alert("User account created & signed in!");
       })
       .catch((error) => {
         if (error.code === "auth/email-already-in-use") {
@@ -104,7 +101,12 @@ const Signup = () => {
           </Text>
         </View>
       </ScrollView>
-      <TouchableOpacity onPress={() => {}} style={styles.button}>
+      <TouchableOpacity
+        onPress={() => {
+          userAccount;
+        }}
+        style={styles.button}
+      >
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
     </SafeAreaView>

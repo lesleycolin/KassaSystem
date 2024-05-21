@@ -5,43 +5,55 @@ import {
   Image,
   TouchableOpacity,
   Alert,
+  TextInput,
+  ScrollView,
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { myColors } from "../utilities/Colors";
-import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { authentication } from "../../FirebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import uuid from "react-native-uuid";
 
-const Signup = () => {
-  //States
+const Signup = ({ db }) => {
+  // States
   const [isVisible, setIsVisible] = useState(true);
   const [userCredentials, setUserCredentials] = useState({
+    name: "",
     email: "",
     password: "",
   });
+  const { email, password, name } = userCredentials;
 
-  const { email, password } = userCredentials;
+  const uid = uuid.v4();
 
   const userAccount = () => {
-    createUserWithEmailAndPassword(authentication, email, password)
-      .then(() => {
-        Alert.alert("User account created & signed in!");
-      })
-      .catch((error) => {
-        if (error.code === "auth/email-already-in-use") {
-          console.log("That email address is already in use!");
-        }
+    try {
+      createUserWithEmailAndPassword(authentication, email, password);
 
-        if (error.code === "auth/invalid-email") {
-          console.log("That email address is invalid!");
-        }
-
-        console.error(error);
+      // Set the user document in the Firestore database
+      setDoc(doc(db, "users", uid), {
+        username: name,
+        email: email,
+        id: authentication.currentUser.uid,
       });
+
+      // Alert the user that the account was created successfully
+      Alert.alert("Success", "Account created successfully!");
+    } catch (error) {
+      if (error.code === "auth/email-already-in-use") {
+        Alert.alert("Error", "That email address is already in use!");
+      } else if (error.code === "auth/invalid-email") {
+        Alert.alert("Error", "That email address is invalid!");
+      } else {
+        Alert.alert("Error", "An error occurred during account creation.");
+      }
+      console.error("Error creating user account:", error);
+    }
   };
 
   const nav = useNavigation();
@@ -67,7 +79,11 @@ const Signup = () => {
           <Text style={styles.inputTitle}>Username</Text>
           <View style={styles.inputfield}>
             <TextInput
-              maxLength={35}
+              value={name}
+              onChangeText={(value) => {
+                setUserCredentials({ ...userCredentials, name: value });
+              }}
+              maxLength={20}
               keyboardType="name-phone-pad"
               style={styles.textinput}
             />
@@ -80,7 +96,7 @@ const Signup = () => {
                 setUserCredentials({ ...userCredentials, email: value });
               }}
               maxLength={35}
-              keyboardType="name-phone-pad"
+              keyboardType="email-address"
               style={styles.textinput}
             />
           </View>
@@ -93,7 +109,7 @@ const Signup = () => {
               }}
               maxLength={20}
               secureTextEntry={isVisible}
-              keyboardType="ascii-capable"
+              keyboardType="default"
               style={styles.textinput}
             />
             <Ionicons
@@ -108,12 +124,7 @@ const Signup = () => {
           </Text>
         </View>
       </ScrollView>
-      <TouchableOpacity
-        onPress={() => {
-          userAccount();
-        }}
-        style={styles.button}
-      >
+      <TouchableOpacity onPress={userAccount} style={styles.button}>
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
     </SafeAreaView>

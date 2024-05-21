@@ -7,16 +7,14 @@ import {
 } from "react-native";
 import React from "react";
 import OrderDetailComponent from "./OrderDetailComponent";
+import OrderOverviewButtons from "./OrderOverviewButtons";
 
 const OrderOverviewComponent = () => {
   return (
     <View style={styles.component}>
       <OrderDetailComponent />
       <View style={styles.orderOverview}>
-        <TouchableOpacity style={styles.button}>Betaal</TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          Zet op rekening
-        </TouchableOpacity>
+        <OrderOverviewButtons />
       </View>
     </View>
   );

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState, useEffect } from "react";
 import OrderDetail from "./OrderDetail";
+import { ScrollView } from "react-native-gesture-handler";
 
 const ProductTable = ({ order }) => {
   const [total, setTotal] = useState(0);
@@ -12,7 +13,9 @@ const ProductTable = ({ order }) => {
   return (
     <View>
       <Text>Bestelling</Text>
-      <OrderDetail order={order} />
+      <ScrollView style={styles.scrollView}>
+        <OrderDetail order={order} />
+      </ScrollView>
       <Text style={styles.totaal}>Totaal: {total} Euro</Text>
     </View>
   );
@@ -25,5 +28,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 20,
     textAlign: "right",
+  },
+  scrollView: {
+    height: 100,
   },
 });

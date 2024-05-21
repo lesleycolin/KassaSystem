@@ -35,12 +35,12 @@ const Signup = ({ db }) => {
     try {
       createUserWithEmailAndPassword(authentication, email, password);
 
-      // Set the user document in the Firestore database
-      setDoc(doc(db, "users", uid), {
-        username: name,
-        email: email,
-        id: authentication.currentUser.uid,
-      });
+      // // Set the user document in the Firestore database
+      // setDoc(doc(db, "users", uid), {
+      //   username: name,
+      //   email: email,
+      //   id: authentication.currentUser.uid,
+      // });
 
       // Alert the user that the account was created successfully
       Alert.alert("Success", "Account created successfully!");

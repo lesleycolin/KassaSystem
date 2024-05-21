@@ -8,8 +8,8 @@ const CashRegisterScreen = () => {
 
   return (
     <View style={styles.container}>
-      <OrderOverviewComponent order={order} />
-      <ItemsComponent setOrder={setOrder} />
+      <OrderOverviewComponent style={styles.overview} order={order} />
+      <ItemsComponent style={styles.items} setOrder={setOrder} />
     </View>
   );
 };
@@ -22,4 +22,10 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     flex: 1,
   },
+  // overview: {
+  //   height: "25%",
+  // },
+  // items: {
+  //   height: "75%",
+  // },
 });

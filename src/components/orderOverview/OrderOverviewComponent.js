@@ -8,6 +8,7 @@ import {
 import React from "react";
 import OrderOverviewButtons from "./OrderOverviewButtons";
 import ProductTable from "./ProductTable";
+import { ScrollView } from "react-native-gesture-handler";
 
 const OrderOverviewComponent = ({ order }) => {
   return (
@@ -27,10 +28,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 10,
   },
-  button: {
-    backgroundColor: "blue",
-    color: "white",
-    padding: 10,
-    borderRadius: 5,
-  },
+  // button: {
+  //   backgroundColor: "blue",
+  //   color: "white",
+  //   padding: 10,
+  //   borderRadius: 5,
+  // },
 });

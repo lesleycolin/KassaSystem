@@ -1,13 +1,15 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { StyleSheet, View } from "react-native";
+import React, { useState } from "react";
 import ItemsComponent from "../components/ItemsComponent";
-import OrderOverviewComponent from "../components/OrderOverviewComponent";
+import OrderOverviewComponent from "../components/orderOverview/OrderOverviewComponent";
 
 const CashRegisterScreen = () => {
+  const [order, setOrder] = useState([]);
+
   return (
     <View style={styles.container}>
-      <OrderOverviewComponent />
-      <ItemsComponent />
+      <OrderOverviewComponent order={order} />
+      <ItemsComponent setOrder={setOrder} />
     </View>
   );
 };

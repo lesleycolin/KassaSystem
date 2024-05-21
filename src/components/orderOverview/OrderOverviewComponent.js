@@ -6,16 +6,14 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
-import OrderDetailComponent from "./OrderDetailComponent";
 import OrderOverviewButtons from "./OrderOverviewButtons";
+import ProductTable from "./ProductTable";
 
-const OrderOverviewComponent = () => {
+const OrderOverviewComponent = ({ order }) => {
   return (
-    <View style={styles.component}>
-      <OrderDetailComponent />
-      <View style={styles.orderOverview}>
-        <OrderOverviewButtons />
-      </View>
+    <View style={styles.orderOverview}>
+      <ProductTable order={order} />
+      <OrderOverviewButtons />
     </View>
   );
 };
@@ -23,14 +21,9 @@ const OrderOverviewComponent = () => {
 export default OrderOverviewComponent;
 
 const styles = StyleSheet.create({
-  component: {
-    display: "flex",
-    flexDirection: "column",
-    flex: 1,
-  },
   orderOverview: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "space-between",
     padding: 10,
   },

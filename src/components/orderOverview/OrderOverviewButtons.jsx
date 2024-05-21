@@ -3,13 +3,17 @@ import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { myColors } from "../../utilities/Colors";
 
-const OrderOverviewButtons = () => {
+const OrderOverviewButtons = ({ setOrder }) => {
+  const HandleDelete = () => {
+    setOrder([]);
+  };
+
   return (
     <View style={styles.orderOverview}>
       <TouchableOpacity style={styles.buttons}>
         <Text style={styles.buttonText}>Betaal</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.buttons}>
+      <TouchableOpacity style={styles.buttons} onPress={HandleDelete}>
         <Text style={styles.buttonText}>Delete</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.buttons}>

@@ -8,7 +8,11 @@ const CashRegisterScreen = () => {
 
   return (
     <View style={styles.container}>
-      <OrderOverviewComponent style={styles.overview} order={order} />
+      <OrderOverviewComponent
+        style={styles.overview}
+        order={order}
+        setOrder={setOrder}
+      />
       <ItemsComponent style={styles.items} setOrder={setOrder} />
     </View>
   );

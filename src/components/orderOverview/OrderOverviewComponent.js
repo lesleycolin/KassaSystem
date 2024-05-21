@@ -10,11 +10,11 @@ import OrderOverviewButtons from "./OrderOverviewButtons";
 import ProductTable from "./ProductTable";
 import { ScrollView } from "react-native-gesture-handler";
 
-const OrderOverviewComponent = ({ order }) => {
+const OrderOverviewComponent = ({ order, setOrder }) => {
   return (
     <View style={styles.orderOverview}>
-      <ProductTable order={order} />
-      <OrderOverviewButtons />
+      <ProductTable order={order} setOrder={setOrder} />
+      <OrderOverviewButtons setOrder={setOrder} />
     </View>
   );
 };

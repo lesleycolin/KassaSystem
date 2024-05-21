@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import OrderDetail from "./OrderDetail";
 import { ScrollView } from "react-native-gesture-handler";
 
-const ProductTable = ({ order }) => {
+const ProductTable = ({ order, setOrder }) => {
   const [total, setTotal] = useState(0);
   useEffect(() => {
     setTotal(
@@ -14,7 +14,7 @@ const ProductTable = ({ order }) => {
     <View>
       <Text>Bestelling</Text>
       <ScrollView style={styles.scrollView}>
-        <OrderDetail order={order} />
+        <OrderDetail order={order} setOrder={setOrder} />
       </ScrollView>
       <Text style={styles.totaal}>Totaal: {total} Euro</Text>
     </View>

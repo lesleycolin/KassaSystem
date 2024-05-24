@@ -13,7 +13,7 @@ const CashRegisterScreen = () => {
         order={order}
         setOrder={setOrder}
       />
-      <ItemsComponent style={styles.items} setOrder={setOrder} />
+      <ItemsComponent style={styles.items} />
     </View>
   );
 };

@@ -14,7 +14,7 @@ const OrderOverviewComponent = ({ order, setOrder }) => {
   return (
     <View style={styles.orderOverview}>
       <ProductTable />
-      {/* <OrderOverviewButtons /> */}
+      <OrderOverviewButtons />
     </View>
   );
 };

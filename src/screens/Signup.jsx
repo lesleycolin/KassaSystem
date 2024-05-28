@@ -18,7 +18,7 @@ import { authentication } from "../../FirebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import uuid from "react-native-uuid";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 const Signup = ({ db }) => {
   // States
@@ -35,13 +35,6 @@ const Signup = ({ db }) => {
   const userAccount = () => {
     try {
       createUserWithEmailAndPassword(authentication, email, password);
-
-      // // Set the user document in the Firestore database
-      // setDoc(doc(db, "users", uid), {
-      //   username: name,
-      //   email: email,
-      //   id: authentication.currentUser.uid,
-      // });
 
       // Alert the user that the account was created successfully
       Alert.alert("Success", "Account created successfully!");

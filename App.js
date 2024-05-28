@@ -16,6 +16,7 @@ import { PersistGate } from "redux-persist/integration/react";
 
 //navigation
 import RootNavigation from "./src/navigation/RootNavigation";
+import AuthContextProvider from "./src/contexts/AuthContext";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -41,9 +42,11 @@ export default function App() {
     <View style={styles.container} onLayout={onLayoutRootView}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <NavigationContainer>
-            <RootNavigation isAuth={isAuth} />
-          </NavigationContainer>
+          <AuthContextProvider>
+            <NavigationContainer>
+              <RootNavigation isAuth={isAuth} />
+            </NavigationContainer>
+          </AuthContextProvider>
         </PersistGate>
       </Provider>
     </View>

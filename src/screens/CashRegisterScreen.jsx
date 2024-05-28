@@ -4,16 +4,10 @@ import ItemsComponent from "../components/ItemsComponent";
 import OrderOverviewComponent from "../components/orderOverview/OrderOverviewComponent";
 
 const CashRegisterScreen = () => {
-  const [order, setOrder] = useState([]);
-
   return (
     <View style={styles.container}>
-      <OrderOverviewComponent
-        style={styles.overview}
-        order={order}
-        setOrder={setOrder}
-      />
-      <ItemsComponent style={styles.items} setOrder={setOrder} />
+      <OrderOverviewComponent style={styles.overview} />
+      <ItemsComponent style={styles.items} />
     </View>
   );
 };

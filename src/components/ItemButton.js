@@ -1,48 +1,22 @@
 import { StyleSheet, Text, TouchableOpacity, Image } from "react-native";
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
 import { myColors } from "../utilities/Colors";
 
+//redux imports
+import { useSelector, useDispatch } from "react-redux";
+import { addItem, addToOrder } from "../redux/slices/orderSlice";
+
 const ItemButton = (props) => {
-  const { setOrder, logo, name, price } = props;
+  const order = useSelector((state) => state.order.products);
+  const dispatch = useDispatch();
 
-  const [number, setNumber] = useState(0);
-
-  const onPressHandler = () => {
-    setNumber((prev) => prev + 1);
-  };
-
-  useEffect(() => {
-    setOrder((prev) => {
-      const index = prev.findIndex((item) => item.name === name);
-      if (index === -1) {
-        return [
-          ...prev,
-          {
-            name: name,
-            price: price,
-            number: number,
-          },
-        ];
-      } else {
-        if (prev[index].number === number) {
-          return prev; // No change in number, so return the previous state
-        }
-        return prev.map((item) => {
-          if (item.name === name) {
-            return {
-              ...item,
-              number: number,
-            };
-          } else {
-            return item;
-          }
-        });
-      }
-    });
-  }, [number, name, price, setOrder]); // Include all necessary dependencies
+  const { logo, name, price } = props;
 
   return (
-    <TouchableOpacity style={styles.button} onPress={onPressHandler}>
+    <TouchableOpacity
+      style={styles.button}
+      onPress={() => dispatch(addToOrder({ name, price }))}
+    >
       <Image source={logo} style={{ maxWidth: 100, height: 100 }} />
     </TouchableOpacity>
   );

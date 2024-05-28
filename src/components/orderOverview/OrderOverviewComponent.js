@@ -13,8 +13,8 @@ import { ScrollView } from "react-native-gesture-handler";
 const OrderOverviewComponent = ({ order, setOrder }) => {
   return (
     <View style={styles.orderOverview}>
-      <ProductTable order={order} setOrder={setOrder} />
-      <OrderOverviewButtons setOrder={setOrder} />
+      <ProductTable />
+      <OrderOverviewButtons />
     </View>
   );
 };

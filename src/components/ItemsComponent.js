@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ItemButton from "./ItemButton";
 import { myColors } from "../utilities/Colors";
 
-const ItemsComponent = ({ setOrder }) => {
+const ItemsComponent = () => {
   const [items, setItems] = useState([
     {
       name: "Coca Cola",
@@ -72,7 +72,6 @@ const ItemsComponent = ({ setOrder }) => {
         data={items}
         renderItem={({ item }) => (
           <ItemButton
-            setOrder={setOrder}
             name={item.name}
             logo={item.logo}
             version={item.version}

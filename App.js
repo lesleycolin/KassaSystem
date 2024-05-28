@@ -9,6 +9,10 @@ import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect } from "react";
 import { useFonts } from "expo-font";
 
+//redux imports
+import { Provider } from "react-redux";
+import store from "./src/redux/store";
+
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
@@ -29,9 +33,11 @@ export default function App() {
   }
   return (
     <View style={styles.container} onLayout={onLayoutRootView}>
-      <NavigationContainer>
-        <TabNavigator />
-      </NavigationContainer>
+      <Provider store={store}>
+        <NavigationContainer>
+          <TabNavigator />
+        </NavigationContainer>
+      </Provider>
     </View>
   );
 }

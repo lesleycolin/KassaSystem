@@ -3,10 +3,10 @@ import React, { useEffect } from "react";
 import { Col, Row } from "react-native-easy-grid";
 import { ScrollView } from "react-native-gesture-handler";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useSelector } from "react-redux";
 
-const OrderDetail = ({ order, setOrder }) => {
-  useEffect(() => {}, [order]);
-
+const OrderDetail = () => {
+  const order = useSelector((state) => state.order.products);
   //TODO: Implement HandleAdd and HandleReduce functions
   // const HandleAdd = () => {
   //   setOrder(
@@ -37,7 +37,7 @@ const OrderDetail = ({ order, setOrder }) => {
   // };
 
   const rows = order.map((product) => {
-    if (!product.number || product.number === 0) {
+    if (!product.quantity || product.quantity === 0) {
       return null;
     }
     return (
@@ -52,13 +52,13 @@ const OrderDetail = ({ order, setOrder }) => {
           <Text>X</Text>
         </Col>
         <Col size={3}>
-          <Text>{product.number}</Text>
+          <Text>{product.quantity}</Text>
         </Col>
         <Col size={3}>
           <Text>=</Text>
         </Col>
         <Col size={5}>
-          <Text>{product.price * product.number}</Text>
+          <Text>{product.price * product.quantity}</Text>
         </Col>
         {/* <Col size={2}>
           <TouchableOpacity onPress={HandleReduce}>

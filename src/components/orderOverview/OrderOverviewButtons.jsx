@@ -2,18 +2,21 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { myColors } from "../../utilities/Colors";
+import { deleteOrder } from "../../redux/slices/orderSlice";
+import { useDispatch } from "react-redux";
 
-const OrderOverviewButtons = ({ setOrder }) => {
-  const HandleDelete = () => {
-    setOrder([]);
-  };
+const OrderOverviewButtons = () => {
+  const dispatch = useDispatch();
 
   return (
     <View style={styles.orderOverview}>
       <TouchableOpacity style={styles.buttons}>
         <Text style={styles.buttonText}>Betaal</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.buttons} onPress={HandleDelete}>
+      <TouchableOpacity
+        style={styles.buttons}
+        onPress={() => dispatch(deleteOrder())}
+      >
         <Text style={styles.buttonText}>Delete</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.buttons}>

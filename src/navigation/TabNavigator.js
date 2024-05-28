@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import "react-native-gesture-handler";
 
 // Icons
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -19,7 +20,7 @@ const TabNavigator = () => {
   return (
     //Navigator
     <Tab.Navigator
-      initialRouteName="Signup"
+      initialRouteName="CashRegisterScreen"
       screenOptions={{
         headerStyle: { backgroundColor: myColors.backGround },
         headerTintColor: myColors.secondary,
@@ -37,7 +38,7 @@ const TabNavigator = () => {
         }}
       >
         {/* bottom tabs to navigate to the main screens */}
-        <Tab.Screen
+        {/* <Tab.Screen
           name="Home"
           component={HomeNavigator}
           options={{
@@ -45,7 +46,7 @@ const TabNavigator = () => {
               <FontAwesome5 name="home" size={24} color={myColors.primary} />
             ),
           }}
-        />
+        /> */}
         <Tab.Screen
           name="Kassa"
           component={CashRegisterNavigator}

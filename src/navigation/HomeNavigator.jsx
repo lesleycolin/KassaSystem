@@ -10,16 +10,9 @@ const HomeStack = createStackNavigator();
 
 const HomeNavigator = () => {
   return (
-    <HomeStack.Navigator
-      initialRouteName="Splash"
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <HomeStack.Screen name="Splash" component={SplashScreen} />
-      <HomeStack.Screen name="Login" component={Login} />
-      <HomeStack.Screen name="Signup" component={Signup} />
-    </HomeStack.Navigator>
+    <View style={styles.container}>
+      <Text>HomeNavigator</Text>
+    </View>
   );
 };
 

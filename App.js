@@ -2,20 +2,22 @@ import "react-native-gesture-handler";
 
 import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import TabNavigator from "./src/navigation/TabNavigator";
 
 import * as SplashScreen from "expo-splash-screen";
 
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 
 //redux imports
 import { Provider } from "react-redux";
 import store from "./src/redux/store";
+import RootNavigation from "./src/navigation/RootNavigation";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+  const [isAuth, setIsAuth] = useState(false);
+
   const [isFontLoaded, fontError] = useFonts({
     "OpenSans-Bold": require("./assets/fonts/OpenSans-Bold.ttf"),
     OpenSans: require("./assets/fonts/OpenSans-Regular.ttf"),
@@ -35,7 +37,7 @@ export default function App() {
     <View style={styles.container} onLayout={onLayoutRootView}>
       <Provider store={store}>
         <NavigationContainer>
-          <TabNavigator />
+          <RootNavigation isAuth={isAuth} />
         </NavigationContainer>
       </Provider>
     </View>

@@ -3,7 +3,7 @@ import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { myColors } from "../../utilities/Colors";
 
-const OrderOverviewButtons = ({ setOrder }) => {
+const OrderOverviewButtons = () => {
   const HandleDelete = () => {
     setOrder([]);
   };

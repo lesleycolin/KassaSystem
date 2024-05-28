@@ -4,19 +4,19 @@ import { myColors } from "../utilities/Colors";
 
 //redux imports
 import { useSelector, useDispatch } from "react-redux";
-import { addItem } from "../redux/slices/orderSlice";
+import { addItem, addToOrder } from "../redux/slices/orderSlice";
 
 const ItemButton = (props) => {
-  const order = useSelector((state) => state.order);
+  const order = useSelector((state) => state.order.products);
   const dispatch = useDispatch();
 
   const { logo, name, price } = props;
 
-  const addItemHandler = () => {
-    dispatch(addItem({ name: name, price: price }));
-  };
   return (
-    <TouchableOpacity style={styles.button} onPress={addItemHandler}>
+    <TouchableOpacity
+      style={styles.button}
+      onPress={() => dispatch(addToOrder({ name, price }))}
+    >
       <Image source={logo} style={{ maxWidth: 100, height: 100 }} />
     </TouchableOpacity>
   );

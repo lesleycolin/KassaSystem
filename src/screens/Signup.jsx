@@ -18,6 +18,7 @@ import { authentication } from "../../FirebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import uuid from "react-native-uuid";
+import {useSelector} from "react-redux";
 
 const Signup = ({ db }) => {
   // States

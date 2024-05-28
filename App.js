@@ -5,12 +5,16 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import * as SplashScreen from "expo-splash-screen";
 
+//hooks import
 import { useCallback, useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 
 //redux imports
 import { Provider } from "react-redux";
-import store from "./src/redux/store";
+import { store, persistor } from "./src/redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+
+//navigation
 import RootNavigation from "./src/navigation/RootNavigation";
 
 SplashScreen.preventAutoHideAsync();
@@ -36,9 +40,11 @@ export default function App() {
   return (
     <View style={styles.container} onLayout={onLayoutRootView}>
       <Provider store={store}>
-        <NavigationContainer>
-          <RootNavigation isAuth={isAuth} />
-        </NavigationContainer>
+        <PersistGate loading={null} persistor={persistor}>
+          <NavigationContainer>
+            <RootNavigation isAuth={isAuth} />
+          </NavigationContainer>
+        </PersistGate>
       </Provider>
     </View>
   );

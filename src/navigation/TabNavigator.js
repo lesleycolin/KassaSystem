@@ -8,7 +8,6 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 
-import HomeNavigator from "./HomeNavigator";
 import CashRegisterNavigator from "./CashRegisterNavigator";
 import OverviewNavigator from "./OverviewNavigator";
 import ClientNavigator from "./ClientNavigator";

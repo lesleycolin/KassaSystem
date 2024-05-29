@@ -5,7 +5,7 @@ import { myColors } from "../utilities/Colors";
 import { StatusBar } from "expo-status-bar";
 import { useNavigation } from "@react-navigation/native";
 
-const SplashScreen = () => {
+const CustomSplashScreen = () => {
   //navigation setup
   const nav = useNavigation();
 
@@ -29,7 +29,7 @@ const SplashScreen = () => {
   );
 };
 
-export default SplashScreen;
+export default CustomSplashScreen;
 
 const styles = StyleSheet.create({
   screen: {

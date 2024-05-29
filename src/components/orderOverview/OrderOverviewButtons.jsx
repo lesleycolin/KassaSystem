@@ -2,18 +2,16 @@ import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import React, { useState } from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { myColors } from "../../utilities/Colors";
-import { deleteOrder, createOrder } from "../../redux/slices/orderSlice";
+import { clearOrder, createOrder } from "../../redux/slices/orderSlice";
 import { useDispatch } from "react-redux";
 
 const OrderOverviewButtons = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
-  //Thunk async function to handle promise
   const handleCreateOrder = async () => {
     setLoading(true);
     try {
-      //unwrap the promise to get original value or throw error
       await dispatch(createOrder()).unwrap();
       // Optionally show a success message or navigate to another screen
     } catch (error) {
@@ -25,7 +23,7 @@ const OrderOverviewButtons = () => {
   };
 
   const handleDeleteOrder = () => {
-    dispatch(deleteOrder());
+    dispatch(clearOrder());
   };
 
   return (

@@ -1,9 +1,30 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { db } from "../../../FirebaseConfig";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 const initialState = {
   products: [],
   totalPrice: 0,
 };
+
+export const createOrder = createAsyncThunk(
+  "order/createOrder",
+  async (_, { getState, dispatch }) => {
+    const state = getState().order;
+    if (state.products.length === 0) {
+      throw new Error("Cannot create an order with no products");
+    }
+
+    const order = {
+      products: state.products,
+      totalPrice: state.totalPrice,
+      createdAt: serverTimestamp(),
+    };
+
+    await addDoc(collection(db, "orders"), order);
+    dispatch(clearOrder());
+  }
+);
 
 export const orderSlice = createSlice({
   name: "order",
@@ -39,13 +60,21 @@ export const orderSlice = createSlice({
         state.totalPrice -= product.price;
       }
     },
-    deleteOrder: (state) => {
+    clearOrder: (state) => {
       state.products = [];
       state.totalPrice = 0;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(createOrder.fulfilled, (state, action) => {
+      // Order created successfully, state cleared in thunk
+    });
+    builder.addCase(createOrder.rejected, (state, action) => {
+      // Handle any errors
+      console.error("Failed to create order:", action.error);
+    });
+  },
 });
 
-export const { addToOrder, removeFromOrder, deleteOrder } = orderSlice.actions;
-
+export const { addToOrder, removeFromOrder, clearOrder } = orderSlice.actions;
 export default orderSlice.reducer;

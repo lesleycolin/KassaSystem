@@ -14,13 +14,15 @@ import { myColors } from "../utilities/Colors";
 import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { authentication } from "../../FirebaseConfig";
+import { auth, db } from "../../FirebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import uuid from "react-native-uuid";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { login, logout } from "../redux/slices/userSlice";
 
-const Signup = ({ db }) => {
+const Signup = () => {
+  const dispatch = useDispatch();
+
   // States
   const [isVisible, setIsVisible] = useState(true);
   const [userCredentials, setUserCredentials] = useState({
@@ -30,12 +32,11 @@ const Signup = ({ db }) => {
   });
   const { email, password, name } = userCredentials;
 
-  const uid = uuid.v4();
-
   const userAccount = () => {
     try {
-      createUserWithEmailAndPassword(authentication, email, password);
+      createUserWithEmailAndPassword(auth, email, password);
 
+      dispatch(login((userName = name), (userLoggedIn = true)));
       // Alert the user that the account was created successfully
       Alert.alert("Success", "Account created successfully!");
     } catch (error) {

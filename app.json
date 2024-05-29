@@ -6,6 +6,11 @@
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "assetBundlePatterns": ["**/*"],
-    "plugins": ["expo-font"]
+    "plugins": ["expo-font"],
+    "splash": {
+      "image": "./assets/logos/Cash-register-Photo.jpg",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    }
   }
 }

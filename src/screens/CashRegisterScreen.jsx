@@ -2,6 +2,7 @@ import { StyleSheet, View } from "react-native";
 import React, { useState } from "react";
 import ItemsComponent from "../components/ItemsComponent";
 import OrderOverviewComponent from "../components/orderOverview/OrderOverviewComponent";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
 const CashRegisterScreen = () => {
   return (

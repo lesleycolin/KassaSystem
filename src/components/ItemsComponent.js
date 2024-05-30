@@ -74,6 +74,27 @@ const ItemsComponent = () => {
       category: "Soda",
       version: "Regular",
     },
+    {
+      name: "Duff Beer",
+      price: 2.5,
+      logo: require("../../assets/logos/duff.jpg"),
+      category: "Beer",
+      version: "Alcohol",
+    },
+    {
+      name: "Leffe blond",
+      price: 2.5,
+      logo: require("../../assets/logos/leffe.jpg"),
+      category: "Beer",
+      version: "Alcohol",
+    },
+    {
+      name: "Stella Artois",
+      price: 2.5,
+      logo: require("../../assets/logos/stella.jpg"),
+      category: "Beer",
+      version: "Alcohol",
+    },
   ]);
   const [activeFilter, setActiveFilter] = useState("All");
 

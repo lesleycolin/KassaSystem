@@ -18,8 +18,7 @@ import { auth } from "../../FirebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { login } from "../redux/slices/userSlice";
-import { TabNavigator } from "../navigation/TabNavigator";
-import { CashRegisterScreen } from "../screens/CashRegisterScreen";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -63,7 +62,8 @@ const Login = () => {
         source={require("../../assets/logos/Cash-register-Photo.jpg")}
       />
       <Text style={styles.title}>Login</Text>
-      <ScrollView style={styles.loginField}>
+
+      <KeyboardAwareScrollView style={styles.loginField}>
         <View>
           <Text style={styles.inputTitle}>Email</Text>
           <View style={styles.inputfield}>
@@ -97,10 +97,10 @@ const Login = () => {
             />
           </View>
         </View>
-      </ScrollView>
-      <TouchableOpacity onPress={userLogin} style={styles.button}>
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
+        <TouchableOpacity onPress={userLogin} style={styles.button}>
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };

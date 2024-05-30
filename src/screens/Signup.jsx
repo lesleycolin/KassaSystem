@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   Alert,
   TextInput,
-  ScrollView,
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -17,8 +16,9 @@ import { useNavigation } from "@react-navigation/native";
 import { auth, db } from "../../FirebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import { useSelector, useDispatch } from "react-redux";
-import { login, logout } from "../redux/slices/userSlice";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/slices/userSlice";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -71,68 +71,70 @@ const Signup = () => {
         style={styles.image}
         source={require("../../assets/logos/Cash-register-Photo.jpg")}
       />
-      <Text style={styles.title}>Sign Up</Text>
-      <Text style={styles.subtitle}>or</Text>
-      <TouchableOpacity
-        onPress={() => {
-          nav.navigate("Login");
-        }}
+      <KeyboardAwareScrollView
+        style={styles.loginField}
+        extraScrollHeight={30}
+        enableOnAndroid={true}
       >
-        <Text style={styles.login}>Login</Text>
-      </TouchableOpacity>
-      <ScrollView style={styles.loginField}>
-        <View>
-          <Text style={styles.inputTitle}>Username</Text>
-          <View style={styles.inputfield}>
-            <TextInput
-              value={name}
-              onChangeText={(value) => {
-                setUserCredentials({ ...userCredentials, name: value });
-              }}
-              maxLength={20}
-              keyboardType="name-phone-pad"
-              style={styles.textinput}
-            />
-          </View>
-          <Text style={styles.inputTitle}>Email</Text>
-          <View style={styles.inputfield}>
-            <TextInput
-              value={email}
-              onChangeText={(value) => {
-                setUserCredentials({ ...userCredentials, email: value });
-              }}
-              maxLength={35}
-              keyboardType="email-address"
-              style={styles.textinput}
-            />
-          </View>
-          <Text style={styles.inputTitle}>Password</Text>
-          <View style={styles.inputfield}>
-            <TextInput
-              value={password}
-              onChangeText={(value) => {
-                setUserCredentials({ ...userCredentials, password: value });
-              }}
-              maxLength={20}
-              secureTextEntry={isVisible}
-              keyboardType="default"
-              style={styles.textinput}
-            />
-            <Ionicons
-              onPress={() => setIsVisible(!isVisible)}
-              name={isVisible ? "eye-off-outline" : "eye-outline"}
-              size={24}
-              color={myColors.primary}
-            />
-          </View>
-          <Text numberOfLines={2} style={styles.footnote}>
-            By continuing you agree to our Terms of Service and Privacy Policy.
-          </Text>
+        <Text style={styles.title}>Sign Up</Text>
+        <Text style={styles.subtitle}>or</Text>
+        <TouchableOpacity
+          onPress={() => {
+            nav.navigate("Login");
+          }}
+        >
+          <Text style={styles.login}>Login</Text>
+        </TouchableOpacity>
+        <Text style={styles.inputTitle}>Username</Text>
+        <View style={styles.inputfield}>
+          <TextInput
+            value={name}
+            onChangeText={(value) => {
+              setUserCredentials({ ...userCredentials, name: value });
+            }}
+            maxLength={20}
+            keyboardType="name-phone-pad"
+            style={styles.textinput}
+          />
         </View>
-      </ScrollView>
-      <TouchableOpacity onPress={userAccount} style={styles.button}>
-        <Text style={styles.buttonText}>Sign Up</Text>
-      </TouchableOpacity>
+        <Text style={styles.inputTitle}>Email</Text>
+        <View style={styles.inputfield}>
+          <TextInput
+            value={email}
+            onChangeText={(value) => {
+              setUserCredentials({ ...userCredentials, email: value });
+            }}
+            maxLength={35}
+            keyboardType="email-address"
+            style={styles.textinput}
+          />
+        </View>
+        <Text style={styles.inputTitle}>Password</Text>
+        <View style={styles.inputfield}>
+          <TextInput
+            value={password}
+            onChangeText={(value) => {
+              setUserCredentials({ ...userCredentials, password: value });
+            }}
+            maxLength={20}
+            secureTextEntry={isVisible}
+            keyboardType="default"
+            style={styles.textinput}
+          />
+          <Ionicons
+            onPress={() => setIsVisible(!isVisible)}
+            name={isVisible ? "eye-off-outline" : "eye-outline"}
+            size={24}
+            color={myColors.primary}
+          />
+        </View>
+        <Text numberOfLines={2} style={styles.footnote}>
+          By continuing you agree to our Terms of Service and Privacy Policy.
+        </Text>
+        <TouchableOpacity onPress={userAccount} style={styles.button}>
+          <Text style={styles.buttonText}>Sign Up</Text>
+        </TouchableOpacity>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };

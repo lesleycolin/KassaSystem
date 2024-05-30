@@ -6,6 +6,7 @@ import {
 import Signup from "../screens/Signup";
 import Login from "../screens/Login";
 import TabNavigator from "./TabNavigator";
+import ProfileScreen from "../screens/ProfileScreen";
 
 const Stack = createStackNavigator();
 
@@ -29,6 +30,14 @@ const RootNavigation = ({ isAuth }) => {
         }}
         name="Login"
         component={Login}
+      />
+      <Stack.Screen
+        options={{
+          title: "Profile",
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        name="Profile"
+        component={ProfileScreen}
       />
     </Stack.Navigator>
   );

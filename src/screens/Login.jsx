@@ -37,9 +37,12 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
 
+      const user = auth.currentUser;
+      const username = user ? user.name || user.email : "User";
+
       dispatch(login({ email }));
       // Alert the user that the login was successful
-      Alert.alert("Success", "Logged in successfully!");
+      Alert.alert("Success", `Logged in successfully, ${username}!`);
     } catch (error) {
       if (error.code === "auth/user-not-found") {
         Alert.alert("Error", "No user found with this email address!");

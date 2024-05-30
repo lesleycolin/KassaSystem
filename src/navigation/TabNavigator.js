@@ -7,11 +7,12 @@ import "react-native-gesture-handler";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import { myColors } from "../utilities/Colors";
 
 import CashRegisterNavigator from "./CashRegisterNavigator";
 import OverviewNavigator from "./OverviewNavigator";
 import ClientNavigator from "./ClientNavigator";
-import { myColors } from "../utilities/Colors";
+import ProfileNavigator from "./ProfileNavigator";
 
 const Tab = createBottomTabNavigator();
 
@@ -36,16 +37,6 @@ const TabNavigator = () => {
           tabBarLabelStyle: { fontFamily: "Angkor" },
         }}
       >
-        {/* bottom tabs to navigate to the main screens */}
-        {/* <Tab.Screen
-          name="Home"
-          component={HomeNavigator}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <FontAwesome5 name="home" size={24} color={myColors.primary} />
-            ),
-          }}
-        /> */}
         <Tab.Screen
           name="Kassa"
           component={CashRegisterNavigator}
@@ -74,6 +65,15 @@ const TabNavigator = () => {
           options={{
             tabBarIcon: ({ color, size }) => (
               <AntDesign name="linechart" size={24} color={myColors.primary} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Profiel"
+          component={ProfileNavigator}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <AntDesign name="setting" size={24} color={myColors.primary} />
             ),
           }}
         />

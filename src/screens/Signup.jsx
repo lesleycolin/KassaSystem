@@ -32,9 +32,20 @@ const Signup = () => {
   });
   const { email, password, name } = userCredentials;
 
-  const userAccount = () => {
+  const userAccount = async () => {
     try {
-      createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      await setDoc(doc(db, "users", user.uid), {
+        name: name,
+        email: email,
+        id: user.uid,
+      });
 
       dispatch(login((userName = name), (userLoggedIn = true)));
       // Alert the user that the account was created successfully

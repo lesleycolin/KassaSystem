@@ -19,7 +19,9 @@ const CustomSplashScreen = () => {
   return (
     <View style={styles.screen}>
       <StatusBar style="light" />
-      <View style={{}}>
+      <View style={styles.screen}>
+        <Text style={styles.title}>TC DUVELS KASSA</Text>
+        <Text style={styles.title}>WORDT GELADEN</Text>
         <Image
           style={styles.image}
           source={require("../../assets/logos/Cash-register-Photo.jpg")}

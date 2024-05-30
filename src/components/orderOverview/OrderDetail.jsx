@@ -7,34 +7,6 @@ import { useSelector } from "react-redux";
 
 const OrderDetail = () => {
   const order = useSelector((state) => state.order.products);
-  //TODO: Implement HandleAdd and HandleReduce functions
-  // const HandleAdd = () => {
-  //   setOrder(
-  //     order.map((product) => {
-  //       if (product.name === product.name) {
-  //         return {
-  //           ...product,
-  //           number: product.number + 1,
-  //         };
-  //       }
-  //       return product;
-  //     })
-  //   );
-  // };
-
-  // const HandleReduce = () => {
-  //   setOrder(
-  //     order.map((product) => {
-  //       if (product.name === product.name || product.number > 0) {
-  //         return {
-  //           ...product,
-  //           number: product.number - 1,
-  //         };
-  //       }
-  //       return product;
-  //     })
-  //   );
-  // };
 
   const rows = order.map((product) => {
     if (!product.quantity || product.quantity === 0) {
@@ -60,16 +32,6 @@ const OrderDetail = () => {
         <Col size={5}>
           <Text>{product.price * product.quantity}</Text>
         </Col>
-        {/* <Col size={2}>
-          <TouchableOpacity onPress={HandleReduce}>
-            <Text>-</Text>
-          </TouchableOpacity>
-        </Col>
-        <Col size={2}>
-          <TouchableOpacity onPress={HandleAdd}>
-            <Text>+</Text>
-          </TouchableOpacity>
-        </Col> */}
       </Row>
     );
   });

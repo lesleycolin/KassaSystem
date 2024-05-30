@@ -20,10 +20,4 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     flex: 1,
   },
-  // overview: {
-  //   height: "25%",
-  // },
-  // items: {
-  //   height: "75%",
-  // },
 });

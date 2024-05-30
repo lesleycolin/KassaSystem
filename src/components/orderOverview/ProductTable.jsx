@@ -8,7 +8,7 @@ const ProductTable = () => {
   const total = useSelector((state) => state.order.totalPrice);
   return (
     <View>
-      <Text>Bestelling</Text>
+      <Text style={styles.bestelling}>Bestelling</Text>
       <ScrollView style={styles.scrollView}>
         <OrderDetail />
       </ScrollView>
@@ -20,6 +20,11 @@ const ProductTable = () => {
 export default ProductTable;
 
 const styles = StyleSheet.create({
+  bestelling: {
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
   totaal: {
     fontWeight: "bold",
     fontSize: 20,
@@ -27,5 +32,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     height: 100,
+    borderColor: "black",
+    borderWidth: 1,
   },
 });

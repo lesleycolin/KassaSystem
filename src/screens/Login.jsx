@@ -14,44 +14,43 @@ import { myColors } from "../utilities/Colors";
 import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { authentication } from "../../FirebaseConfig";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
-import uuid from "react-native-uuid";
+import { auth } from "../../FirebaseConfig";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/slices/userSlice";
+import { TabNavigator } from "../navigation/TabNavigator";
+import { CashRegisterScreen } from "../screens/CashRegisterScreen";
 
-const Signup = ({ db }) => {
+const Login = () => {
+  const dispatch = useDispatch();
+  const nav = useNavigation();
+
   // States
   const [isVisible, setIsVisible] = useState(true);
   const [userCredentials, setUserCredentials] = useState({
     email: "",
     password: "",
   });
-  const { email, password, name } = userCredentials;
+  const { email, password } = userCredentials;
 
-  const uid = uuid.v4();
-
-  const userAccount = () => {
+  const userLogin = async () => {
     try {
-      signInWithEmailAndPassword(authentication, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
 
-      // Set the user document in the Firestore database
-      setDoc(doc(db, "users", uid), {
-        email: email,
-        id: authentication.currentUser.uid,
-      });
-    } catch (error) {}
-    if (error.code === "auth/invalid-email") {
-      Alert.alert("Error", "That email address is invalid!");
-    } else if (error.code === "auth/invalid-password") {
-      Alert.alert("Error", "That password address is invalid!");
+      dispatch(login({ email }));
+      // Alert the user that the login was successful
+      Alert.alert("Success", "Logged in successfully!");
+    } catch (error) {
+      if (error.code === "auth/user-not-found") {
+        Alert.alert("Error", "No user found with this email address!");
+      } else if (error.code === "auth/wrong-password") {
+        Alert.alert("Error", "Incorrect password!");
+      } else {
+        Alert.alert("Error", "An error occurred during login.");
+      }
+      console.error("Error logging in user:", error);
     }
-    console.error("Error creating user account:", error);
   };
-
-  const nav = useNavigation();
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -96,14 +95,14 @@ const Signup = ({ db }) => {
           </View>
         </View>
       </ScrollView>
-      <TouchableOpacity onPress={userAccount} style={styles.button}>
+      <TouchableOpacity onPress={userLogin} style={styles.button}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
 };
 
-export default Signup;
+export default Login;
 
 const styles = StyleSheet.create({
   screen: {

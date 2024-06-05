@@ -124,7 +124,7 @@ const ItemsComponent = () => {
               activeFilter === "All" && styles.activeFilterText,
             ]}
           >
-            All
+            Alles
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -140,7 +140,7 @@ const ItemsComponent = () => {
               activeFilter === "Soda" && styles.activeFilterText,
             ]}
           >
-            Frisdrank
+            Fris
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -187,6 +187,7 @@ const styles = StyleSheet.create({
   filterContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
+    alignItems: "center", // Center items vertically
     paddingVertical: 10,
   },
   filterButton: {
@@ -201,6 +202,7 @@ const styles = StyleSheet.create({
   },
   filterText: {
     color: myColors.primary,
+    textAlign: "center",
   },
   activeFilterText: {
     color: myColors.white,

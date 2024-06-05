@@ -66,11 +66,8 @@ export const orderSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(createOrder.fulfilled, (state, action) => {
-      // Order created successfully, state cleared in thunk
-    });
+    builder.addCase(createOrder.fulfilled, (state, action) => {});
     builder.addCase(createOrder.rejected, (state, action) => {
-      // Handle any errors
       console.error("Failed to create order:", action.error);
     });
   },

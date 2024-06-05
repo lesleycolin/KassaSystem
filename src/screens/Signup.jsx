@@ -48,7 +48,6 @@ const Signup = () => {
       });
 
       dispatch(login((userName = name), (userLoggedIn = true)));
-      // Alert the user that the account was created successfully
       Alert.alert("Success", "Account created successfully!");
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {

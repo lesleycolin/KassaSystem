@@ -11,27 +11,22 @@ import {
   REGISTER,
 } from "redux-persist";
 
-// Import your slice reducers
 import { orderSlice } from "./slices/orderSlice";
 import { userSlice } from "./slices/userSlice";
 
-// Combine your slice reducers
 const rootReducer = combineReducers({
   order: orderSlice.reducer,
   user: userSlice.reducer,
 });
 
-// Persist configuration
 const persistConfig = {
   key: "root",
   version: 1,
   storage: AsyncStorage,
 };
 
-// Create the persisted reducer
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-// Create the store
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
@@ -42,5 +37,4 @@ export const store = configureStore({
     }),
 });
 
-// Create the persistor
 export const persistor = persistStore(store);

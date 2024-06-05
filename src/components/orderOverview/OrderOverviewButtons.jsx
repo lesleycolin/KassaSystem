@@ -13,10 +13,8 @@ const OrderOverviewButtons = () => {
     setLoading(true);
     try {
       await dispatch(createOrder()).unwrap();
-      // Optionally show a success message or navigate to another screen
     } catch (error) {
       console.error("Failed to create order:", error);
-      // Optionally show an error message
     } finally {
       setLoading(false);
     }
@@ -42,7 +40,12 @@ const OrderOverviewButtons = () => {
       <TouchableOpacity style={styles.buttons} onPress={handleDeleteOrder}>
         <Text style={styles.buttonText}>Delete</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.buttons}>
+      <TouchableOpacity
+        style={styles.buttons}
+        onPress={() => {
+          console.log("Op rekening gezet");
+        }}
+      >
         <Text style={styles.buttonText}>Rekening</Text>
       </TouchableOpacity>
     </View>

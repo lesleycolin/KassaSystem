@@ -15,6 +15,7 @@ import { store, persistor } from "./src/redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 
 //navigation
+
 import RootNavigation from "./src/navigation/RootNavigation";
 import AuthContextProvider from "./src/contexts/AuthContext";
 
@@ -30,12 +31,9 @@ export default function App() {
   const [isAuthLoading, setIsAuthLoading] = useState(true);
   const [isAuth, setIsAuth] = useState(false);
 
-  //useEffect to check if the user is authenticated
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      // Login status te checken
       setIsAuth(user !== null);
-      // Om te zien of we nog aan het checken zijn
       setIsAuthLoading(false);
 
       try {

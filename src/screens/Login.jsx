@@ -40,7 +40,6 @@ const Login = () => {
       const username = user ? user.name || user.email : "User";
 
       dispatch(login({ email }));
-      // Alert the user that the login was successful
       Alert.alert("Success", `Logged in successfully, ${username}!`);
     } catch (error) {
       if (error.code === "auth/user-not-found") {
